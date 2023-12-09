@@ -1,3 +1,4 @@
+
 version: "3"
 services:
   reverseproxy:
@@ -33,7 +34,7 @@ services:
       AWS_PROFILE: $AWS_PROFILE 
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
-      URL: "http://localhost:8100"
+      URL: $URL
   frontend:
     image: mzucc/udacity-frontend:local
     ports:
