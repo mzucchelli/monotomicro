@@ -36,6 +36,6 @@ services:
       JWT_SECRET: $JWT_SECRET
       URL: $URL
   frontend:
-    image: mzucc/udacity-frontend:local
+    image: mzucc/udacity-frontend
     ports:
       - "8100:80"
