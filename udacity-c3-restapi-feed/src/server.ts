@@ -36,7 +36,7 @@ const c = config.dev;
 
   // Start the Server
   app.listen( port, () => {
-      console.log( `backend-feed 1 server running ` + c.url );
+      console.log( `backend-feed 2 server running ` + c.url );
       console.log( `press CTRL+C to stop server` );
   } );
 })();
