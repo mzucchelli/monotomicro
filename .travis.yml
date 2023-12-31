@@ -28,10 +28,15 @@ install:
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push mzucc/reverseproxy
-  - docker push mzucc/udacity-restapi-user
-  - docker push mzucc/udacity-restapi-feed
-  - docker push mzucc/udacity-frontend
+  - docker push mzucc/reverseproxy:latest
+  - docker push mzucc/udacity-restapi-user:latest
+  - docker push mzucc/udacity-restapi-feed:latest
+  - docker push mzucc/udacity-frontend:latest
+  - docker push mzucc/reverseproxy:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
+  - docker push mzucc/udacity-restapi-user:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
+  - docker push mzucc/udacity-restapi-feed:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
+  - docker push mzucc/udacity-frontend:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
+
   
 
 
