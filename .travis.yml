@@ -23,10 +23,11 @@ install:
   - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel
   - docker tag mzucc/reverseproxy mzucc/reverseproxy:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER 
   - docker tag mzucc/udacity-restapi-user mzucc/udacity-restapi-user:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
-  - docker tag mzucc/udacity-restapi-feed mzucc/udacity-restapi-feed:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
+  - docker tag "mzucc/udacity-restapi-feed mzucc/udacity-restapi-feed:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER"
   - docker tag mzucc/udacity-frontend mzucc/udacity-frontend:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
 
 after_success:
+  - docker image ls
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push mzucc/reverseproxy:latest
   - docker push mzucc/udacity-restapi-user:latest
