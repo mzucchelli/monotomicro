@@ -4,8 +4,8 @@ services: docker
 
 env:
   - DOCKER_COMPOSE_VERSION=1.23.2
-  - MAJOR_VERSION=0
-  - MINOR_VERSION=0
+  - MAJOR_VERSION="0"
+  - MINOR_VERSION="0"
 
 before_install:
   - docker -v && docker-compose -v
