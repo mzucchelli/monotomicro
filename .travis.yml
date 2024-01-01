@@ -4,8 +4,6 @@ services: docker
 
 env:
   - DOCKER_COMPOSE_VERSION=1.23.2
-  - MAJOR_VERSION="0"
-  - MINOR_VERSION="0"
 
 before_install:
   - docker -v && docker-compose -v
@@ -21,23 +19,18 @@ before_install:
 
 install:
   - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel
-  - docker tag mzucc/reverseproxy mzucc/reverseproxy:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER 
-  - docker tag mzucc/udacity-restapi-user mzucc/udacity-restapi-user:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
-  - docker tag "mzucc/udacity-restapi-feed mzucc/udacity-restapi-feed:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER"
-  - docker tag mzucc/udacity-frontend mzucc/udacity-frontend:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
+  - docker tag mzucc/reverseproxy mzucc/reverseproxy:build-$TRAVIS_BUILD_NUMBER 
+  - docker tag mzucc/udacity-restapi-user mzucc/udacity-restapi-user:build-$TRAVIS_BUILD_NUMBER 
+  - docker tag mzucc/udacity-restapi-feed mzucc/udacity-restapi-feed:build-$TRAVIS_BUILD_NUMBER 
+  - docker tag mzucc/udacity-frontend mzucc/udacity-frontend:build-$TRAVIS_BUILD_NUMBER 
 
 after_success:
   - docker image ls
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push mzucc/reverseproxy:latest
-  - docker push mzucc/udacity-restapi-user:latest
-  - docker push mzucc/udacity-restapi-feed:latest
-  - docker push mzucc/udacity-frontend:latest
-  - docker push mzucc/reverseproxy:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
-  - docker push mzucc/udacity-restapi-user:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
-  - docker push mzucc/udacity-restapi-feed:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
-  - docker push mzucc/udacity-frontend:v$MAJOR_VERSION.$MINOR_VERSION.$TRAVIS_BUILD_NUMBER
+  - docker push -a mzucc/reverseproxy
+  - docker push -a mzucc/udacity-restapi-user
+  - docker push -a mzucc/udacity-restapi-feed
+  - docker push -a mzucc/udacity-frontend
 
-  
 
 
