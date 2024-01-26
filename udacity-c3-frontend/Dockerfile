@@ -11,7 +11,8 @@ RUN npm cache clear --force
 RUN rm -rf ./node_modules
 RUN rm package-lock.json
 
-RUN npm ci
+#RUN npm ci
+RUN npm install
 # Bundle app source
 COPY . .
 RUN ionic build
