@@ -6,6 +6,11 @@ WORKDIR /usr/src/app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
+
+RUN npm cache clear --force
+RUN rm -rf ./node_modules
+RUN rm package-lock.json
+
 RUN npm ci
 # Bundle app source
 COPY . .
