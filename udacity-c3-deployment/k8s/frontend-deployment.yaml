@@ -16,7 +16,7 @@ spec:
         api: external        
     spec:
       containers:
-      - image: mzucc/udacity-frontend:local
+      - image: mzucc/udacity-frontend
         name: frontend
         imagePullPolicy: Always          
         ports:
