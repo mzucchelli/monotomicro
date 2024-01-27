@@ -39,3 +39,5 @@ services:
     image: mzucc/udacity-frontend
     ports:
       - "8100:80"
+    environment:
+      API_HOST: $API_HOST

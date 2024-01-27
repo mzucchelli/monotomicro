@@ -27,6 +27,12 @@ spec:
             cpu: "250m"
           limits:
             memory: "1024Mi"
-            cpu: "500m"                
+            cpu: "500m" 
+        env:
+          - name: API_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: API_HOST
       restartPolicy: Always
 
